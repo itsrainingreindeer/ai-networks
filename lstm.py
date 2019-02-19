@@ -209,7 +209,7 @@ class LSTM:
         return
         
 def LoadText():
-    with open('eminem.txt', "r") as text_file:
+    with open('raps.txt', "r") as text_file:
         data = text_file.read()
     text = list(data.split(' '))
     outputSize = len(text)
@@ -234,14 +234,14 @@ def ExportText(output, data):
     for i in range(0, output.shape[0]):
         for j in range(0, output.shape[1]):
             prob[j] = output[i][j] / np.sum(output[i])
-        outputText += np.random.choice(data, p=prob)    
+        outputText += np.random.choice(data, p=prob) + ' '   
     with open("output.txt", "w") as text_file:
         text_file.write(outputText)
     return
 
 #Begin program    
 print("Beginning")
-iterations = 50000
+iterations = 5000
 learningRate = 0.001
 returnData, numCategories, expectedOutput, outputSize, data = LoadText()
 print("Done Reading")
